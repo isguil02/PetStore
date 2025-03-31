@@ -38,7 +38,42 @@ public class PetStoreApp {
         System.out.println(DOUBLE_DASH_LINE);
     }
 
-    public static void main(String[] args) {
+    private void deletePet() {
+
+    }// end of deletePet method
+
+    private Bird addBird(String name, String dateReceived, String description) throws Exception {
+        Bird bird = new Bird();
+        return bird;
+    }// end of addBird method
+
+    private Fish addFish(String name, String dateReceived, String description) throws Exception {
+        Fish fish = new Fish();
+        return fish;
+    } // end of addFish method
+
+    private void addPet() throws Exception {
+
+    } // end of addPet method
+
+    private void displayInventory(){
+
+    } // end of displayInventory method
+
+    public void saveInventory() {
+
+    } // end of saveInventory method - why is there no comment in your code?
+
+    public void loadInventory(){
+
+    } // end of loadInventory method
+
+    private void mainMenu() throws Exception {
+
+    } // end of mainMenu method
+
+
+        public static void main(String[] args) {
 
         PetStoreApp app = new PetStoreApp();
 
