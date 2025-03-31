@@ -30,7 +30,9 @@ public class PetStoreApp {
 
     private static final String SINGLE_DASH_LINE = DOUBLE_DASH_LINE.replace('=', '-');
 
-    //private final List<Pet> inventory;
+    private final List<Pet> inventory;
+
+    public PetStoreApp() { this.inventory = new ArrayList<>();}
 
     private void displayAppHeading() {
         System.out.println(DOUBLE_DASH_LINE);
@@ -43,7 +45,23 @@ public class PetStoreApp {
     }// end of deletePet method
 
     private Bird addBird(String name, String dateReceived, String description) throws Exception {
-        Bird bird = new Bird();
+
+        Bird bird;
+        int userInput;
+        String species;
+        HabitatType habitatType = null;
+
+        species = Input.getString("Species: ");
+        try {
+            userInput = Input.getIntRange("Habitat Type 1=Cage, 2=Aquarium, 3=Terrarium, 4=Open_Space: ", 1, 3);
+            habitatType = HabitatType.values()[userInput - 1];
+        } catch (Exception e){
+            throw new Exception("Invalid data! habitat choice = " + habitatType);
+        }
+
+        bird = new Bird(name, dateReceived, species, habitatType);
+        bird.setDescription(description);
+
         return bird;
     }// end of addBird method
 
@@ -68,7 +86,6 @@ public class PetStoreApp {
                 inventory.add(bird);
                 System.out.println("Successful Add: " + bird);
                 Input.getLine("Press enter to continue...");
-                break;
                 break;
             case 2:
                 break;
