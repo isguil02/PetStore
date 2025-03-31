@@ -41,6 +41,22 @@ public class PetStoreApp {
     }
 
     private void deletePet() {
+        System.out.println("Delete Inventory");
+        System.out.println(SINGLE_DASH_LINE);
+
+        int id = Input.getInt("Please enter the inventory id: ");
+
+        for (Pet pet : inventory){
+            System.out.println(id);
+            if (pet.getId() == id){
+                inventory.remove(pet);
+                System.out.println("Successful Delete: " + pet);
+                Input.getLine("Press enter to continue...");
+                return;
+            }
+        }
+
+        System.out.println("ERROR: Inventory ID:" + id + " NOT found!");
 
     }// end of deletePet method
 
@@ -53,7 +69,7 @@ public class PetStoreApp {
 
         species = Input.getString("Species: ");
         try {
-            userInput = Input.getIntRange("Habitat Type 1=Cage, 2=Aquarium, 3=Terrarium, 4=Open_Space: ", 1, 3);
+            userInput = Input.getIntRange("Habitat Type 1=Cage, 2=Aquarium, 3=Terrarium, 4=Open_Space: ", 1, 4);
             habitatType = HabitatType.values()[userInput - 1];
         } catch (Exception e){
             throw new Exception("Invalid data! habitat choice = " + habitatType);
@@ -153,6 +169,14 @@ public class PetStoreApp {
                     try {
                         this.addPet();
                     } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        Input.getLine("Press enter to continue...");
+                    }
+                    break;
+                case 2:
+                    try {
+                        this.deletePet();
+                    } catch (Exception e){
                         System.out.println(e.getMessage());
                         Input.getLine("Press enter to continue...");
                     }
