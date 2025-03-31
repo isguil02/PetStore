@@ -23,4 +23,34 @@ import java.util.List;
  */
 
 public class PetStoreApp {
-}
+
+    private static final String INVENTORY_FILE = "inventory.txt";
+
+    private static final String DOUBLE_DASH_LINE = String.format("%50s", "").replace(' ', '=');
+
+    private static final String SINGLE_DASH_LINE = DOUBLE_DASH_LINE.replace('=', '-');
+
+    //private final List<Pet> inventory;
+
+    private void displayAppHeading() {
+        System.out.println(DOUBLE_DASH_LINE);
+        System.out.println("Welcome to the Pet Store App");
+        System.out.println(DOUBLE_DASH_LINE);
+    }
+
+    public static void main(String[] args) {
+
+        PetStoreApp app = new PetStoreApp();
+
+        app.displayAppHeading();
+
+        try {
+            //app.mainMenu();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Sorry but this program ended with an error. Please contact Isaiah!");
+        }
+        Input.sc.close();
+    }// end of main method
+
+} // end of PetStoreApp class
