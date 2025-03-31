@@ -66,7 +66,21 @@ public class PetStoreApp {
     }// end of addBird method
 
     private Fish addFish(String name, String dateReceived, String description) throws Exception {
-        Fish fish = new Fish();
+        Fish fish;
+        String species;
+        FeedingSchedule feedingSchedule = null;
+
+        species = Input.getString("Species: ");
+
+        try {
+            int userInput = Input.getIntRange("Feeding Schedule 1=Once Daily, 2=Twice Daily, 3=Three times a day, 4=Weekly, 5=Biweekly: ", 1, 5);
+            feedingSchedule = FeedingSchedule.values()[userInput - 1];
+        } catch (Exception e){
+            throw new Exception("Invalid data! Periodical Feeding Schedule = " + feedingSchedule);
+        }
+
+        fish = new Fish(name, dateReceived, species, feedingSchedule);
+        fish.setDescription(description);
         return fish;
     } // end of addFish method
 
@@ -88,8 +102,10 @@ public class PetStoreApp {
                 Input.getLine("Press enter to continue...");
                 break;
             case 2:
-                break;
-            case 3:
+                Fish fish = addFish(name, dateReceived, description);
+                inventory.add(fish);
+                System.out.println("Successful Add: " + fish);
+                Input.getLine("Press enter to continue...");
                 break;
             default:
                 throw new Exception("Invalid pet type: " + petType);
