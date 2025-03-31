@@ -130,8 +130,31 @@ public class PetStoreApp {
     } // end of addPet method
 
     private void displayInventory(){
+        System.out.println("Bird Inventory");
+        System.out.println(SINGLE_DASH_LINE);
+        System.out.println("ID  Name            Date Rec'd Species        Habitat");
+        System.out.println("--- --------------- ---------- --------------- ----------");
+        for (Pet pet : inventory) {
+            if (pet instanceof Bird){
+                pet.displayPet();
+            }
+        }
+        System.out.println();
 
-    } // end of displayInventory method
+
+        System.out.println("Fish Inventory");
+        System.out.println(SINGLE_DASH_LINE);
+        System.out.println("ID  Name          Date Rec'd Species          Schedule");
+        System.out.println("--- --------------- ---------- --------------- ----------");
+        for (Pet pet : inventory) {
+            if (pet instanceof Fish){
+                pet.displayPet();
+            }
+        }
+        System.out.println();
+
+        Input.getLine("Press enter to continue...");
+    } // end of displayInventory
 
     public void saveInventory() {
 
@@ -180,6 +203,9 @@ public class PetStoreApp {
                         System.out.println(e.getMessage());
                         Input.getLine("Press enter to continue...");
                     }
+                    break;
+                case 3:
+                    displayInventory();
                     break;
                 default:
                     throw new Exception("Invalid menu choice: " + userInput);
