@@ -25,7 +25,7 @@ public class Pet {
         setDateReceived(dateReceived);
     }
 
-    public static void setLastId(int lastId){ Item.lastId = lastId;  }
+    public static void setLastId(int lastId){ Pet.lastId = lastId;  }
 
     public int getId() { return id; }
 
