@@ -64,6 +64,11 @@ public class PetStoreApp {
         int petType = Input.getIntRange("Type 1=Bird, 2=Fish: ", 1, 2);
         switch (petType) {
             case 1:
+                Bird bird = addBird(name, dateReceived, description);
+                inventory.add(bird);
+                System.out.println("Successful Add: " + bird);
+                Input.getLine("Press enter to continue...");
+                break;
                 break;
             case 2:
                 break;
