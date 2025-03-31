@@ -70,6 +70,32 @@ public class PetStoreApp {
 
     private void mainMenu() throws Exception {
 
+        boolean keepRunning = true;
+
+        while (keepRunning) {
+
+            System.out.println(SINGLE_DASH_LINE);
+            System.out.println("Main Menu");
+            System.out.println(SINGLE_DASH_LINE);
+
+            System.out.println("0 = End Program");
+            System.out.println("1 = Add Pet");
+            System.out.println("2 = Delete Pet");
+            System.out.println("3 = Display Inventory");
+            System.out.println("4 = Save Inventory");
+            System.out.println("5 = Load Inventory");
+
+            System.out.println(SINGLE_DASH_LINE);
+            int userInput = Input.getIntRange("Menu Choice: ", 0, 5);
+            System.out.println(SINGLE_DASH_LINE);
+            switch (userInput) {
+                case 0:
+                    keepRunning = false;
+                    break;
+                default:
+                    throw new Exception("Invalid menu choice: " + userInput);
+            } // end of switch
+        } // end of while loop
     } // end of mainMenu method
 
 
@@ -80,7 +106,7 @@ public class PetStoreApp {
         app.displayAppHeading();
 
         try {
-            //app.mainMenu();
+            app.mainMenu();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Sorry but this program ended with an error. Please contact Isaiah!");
