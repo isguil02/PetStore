@@ -157,6 +157,47 @@ public class PetStoreApp {
     } // end of displayInventory
 
     public void saveInventory() {
+        System.out.println("Saving data! Please wait...");
+/*
+Try-With-Resources: shortcut way to declare and initialize in one step
+when you use this way of opening the file as part of the try statement
+Java will automatically close the file so there is no need to write a close statement
+NOTE: Java doesn't automatically close the file if the file is opened inside the block
+*/
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(PetStoreApp.INVENTORY_FILE))) {
+
+
+            for(Pet pet : inventory){
+
+
+                // The file will be piped delimited so each field is separated by a |
+                if (pet instanceof Bird)
+                    bw.write("BIRD|");
+                else if (pet instanceof Fish)
+                    bw.write("FISH|");
+
+
+                bw.write(pet.getId() + "|" + pet.getName() + "|" + pet.getDateReceived() + "|" + pet.getDescription() + "|");
+
+
+                if (pet instanceof Bird)
+                    bw.write(((Bird) pet).getSpecies() + "|" + ((Bird) pet).getHabitatType() + "\n");
+                else if (pet instanceof Fish)
+                    bw.write(((Fish) pet).getSpecies() + "|" + ((Fish) pet).getFeedingSchedule() + "\n");
+            }
+
+
+            bw.flush();
+            // No explicit close needed - automatically handled when using Try-With-Resources
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println(inventory.size() + " Inventory records successfully written to " + PetStoreApp.INVENTORY_FILE);
+        Input.getLine("Please any key to continue...");
 
     } // end of saveInventory method - why is there no comment in your code?
 
@@ -207,6 +248,8 @@ public class PetStoreApp {
                 case 3:
                     displayInventory();
                     break;
+                case 4:
+                    saveInventory();
                 default:
                     throw new Exception("Invalid menu choice: " + userInput);
             } // end of switch

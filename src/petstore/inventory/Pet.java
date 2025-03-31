@@ -29,7 +29,7 @@ public class Pet {
 
     public int getId() { return id; }
 
-    public String getTitle() {
+    public String getName() {
         return name;
     }
 
