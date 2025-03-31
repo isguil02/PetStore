@@ -53,6 +53,25 @@ public class PetStoreApp {
     } // end of addFish method
 
     private void addPet() throws Exception {
+        System.out.println("Add Pet");
+        System.out.println(SINGLE_DASH_LINE);
+
+        System.out.println("Please enter the following pet information:");
+        String name = Input.getString("Name: ");
+        String dateReceived = Input.getDate("Date Received (MM-DD-YYYY): ");
+        String description = Input.getLine("Description or press enter to continue: ");
+
+        int petType = Input.getIntRange("Type 1=Bird, 2=Fish: ", 1, 2);
+        switch (petType) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                throw new Exception("Invalid pet type: " + petType);
+        } // end of switch
 
     } // end of addPet method
 
@@ -91,6 +110,14 @@ public class PetStoreApp {
             switch (userInput) {
                 case 0:
                     keepRunning = false;
+                    break;
+                case 1:
+                    try {
+                        this.addPet();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        Input.getLine("Press enter to continue...");
+                    }
                     break;
                 default:
                     throw new Exception("Invalid menu choice: " + userInput);
