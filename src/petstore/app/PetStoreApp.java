@@ -202,6 +202,65 @@ NOTE: Java doesn't automatically close the file if the file is opened inside the
     } // end of saveInventory method - why is there no comment in your code?
 
     public void loadInventory(){
+        System.out.println("Loading data! Please wait...");
+
+
+        inventory.clear(); //empty the ArrayList so we can load the data from the file
+
+
+/*
+Try-With-Resources: shortcut way to declare and initialize in one step
+when you use this way of opening the file as part of the try statement
+Java will automatically close the file so there is no need to write a close statement
+NOTE: Java doesn't automatically close the file if the file is opened inside the block
+*/
+        try (BufferedReader br = new BufferedReader(new FileReader(PetStoreApp.INVENTORY_FILE))) {
+
+
+            String inLine;
+
+
+            while ((inLine = br.readLine()) != null) {  // exclude newline
+
+
+                String[] data = inLine.split("[|]"); // [|] is a regex for splitting by the pipe character
+
+
+                //0=pet 1=id, 2=title, 3=date, 4=description, 5=species, 6=habitat type/feeding schedule
+                switch(data[0]){
+                    case "BIRD":
+                        Bird b = new Bird(Integer.parseInt(data[1]), data[2], data[3], data[5], HabitatType.valueOf(data[6]));
+                        b.setDescription(data[4]);
+                        inventory.add(b);
+                        break;
+                    case "FISH":
+                        Fish fish = new Fish(Integer.parseInt(data[1]), data[2], data[3], data[5], FeedingSchedule.valueOf(data[6]));
+                        fish.setDescription(data[4]);
+                        inventory.add(fish);
+                        break;
+                    default:
+                        throw new Exception("Invalid inventory type: " + data[0]);
+                } // end of switch
+
+
+            } // end of while loop
+
+
+            // No explicit close needed - automatically handled when using Try-With-Resources
+
+
+            Pet.setLastId(inventory.get(inventory.size() - 1).getId());
+
+
+        } catch (Exception e) {
+            e.getMessage();
+        } // end of try-catch
+
+
+        System.out.println(inventory.size() + " Inventory records successfully loaded from " + PetStoreApp.INVENTORY_FILE);
+        Input.getLine("Please any key to continue...");
+
+
 
     } // end of loadInventory method
 
@@ -250,6 +309,9 @@ NOTE: Java doesn't automatically close the file if the file is opened inside the
                     break;
                 case 4:
                     saveInventory();
+                case 5:
+                    loadInventory();
+                    break;
                 default:
                     throw new Exception("Invalid menu choice: " + userInput);
             } // end of switch
