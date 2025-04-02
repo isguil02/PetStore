@@ -97,6 +97,7 @@ public class PetStoreApp {
 
         fish = new Fish(name, dateReceived, species, feedingSchedule);
         fish.setDescription(description);
+
         return fish;
     } // end of addFish method
 
@@ -123,6 +124,8 @@ public class PetStoreApp {
                 System.out.println("Successful Add: " + fish);
                 Input.getLine("Press enter to continue...");
                 break;
+            case 3:
+                break;
             default:
                 throw new Exception("Invalid pet type: " + petType);
         } // end of switch
@@ -144,7 +147,7 @@ public class PetStoreApp {
 
         System.out.println("Fish Inventory");
         System.out.println(SINGLE_DASH_LINE);
-        System.out.println("ID  Name          Date Rec'd Species          Schedule");
+        System.out.println("ID  Name            Date Rec'd Species         Schedule");
         System.out.println("--- --------------- ---------- --------------- ----------");
         for (Pet pet : inventory) {
             if (pet instanceof Fish){
