@@ -1,9 +1,11 @@
 package petstore.inventory;
 
+import petstore.app.PetStoreApp;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Pet {
+public class Pet extends PetStoreApp {
 
     private static int lastId = 0;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");

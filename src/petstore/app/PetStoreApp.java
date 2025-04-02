@@ -26,7 +26,7 @@ public class PetStoreApp {
 
     private static final String INVENTORY_FILE = "inventory.txt";
 
-    private static final String DOUBLE_DASH_LINE = String.format("%50s", "").replace(' ', '=');
+    private static final String DOUBLE_DASH_LINE = String.format("%57s", "").replace(' ', '=');
 
     private static final String SINGLE_DASH_LINE = DOUBLE_DASH_LINE.replace('=', '-');
 
@@ -135,7 +135,7 @@ public class PetStoreApp {
     private void displayInventory(){
         System.out.println("Bird Inventory");
         System.out.println(SINGLE_DASH_LINE);
-        System.out.println("ID  Name            Date Rec'd Species        Habitat");
+        System.out.println("ID  Name            Date Rec'd Species         Habitat");
         System.out.println("--- --------------- ---------- --------------- ----------");
         for (Pet pet : inventory) {
             if (pet instanceof Bird){
