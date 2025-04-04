@@ -34,6 +34,6 @@ public class Bird extends Pet {
     @Override
     public void displayPet() {
         super.displayPet();
-        System.out.printf(" %-15s %-10s", species, habitatType);
+        System.out.printf(" %-15s %-10s \n", species, habitatType);
     }
 }
